@@ -1,12 +1,35 @@
+#spring:
+##  application:
+##    #    对应config server中配置文件的{application}
+##    name: microservice
+##  cloud:
+##    config:
+##      #      config server的地址，默认http://localhost:8888
+##      uri: http://localhost:8901/
+##      #      对应config server中的{profile}
+##      profile: dev
+##      #      Git仓库分支，对应config server中的{label}
+##      label: master
+
 spring:
   application:
     #    对应config server中配置文件的{application}
     name: microservice
   cloud:
     config:
-      #      config server的地址，默认http://localhost:8888
-      uri: http://localhost:8901/
       #      对应config server中的{profile}
       profile: dev
       #      Git仓库分支，对应config server中的{label}
       label: master
+      #      config server的地址，默认http://localhost:8888
+      discovery:
+        #        开启通过服务发现组件访问Config Server的功能，而不再指定Config Server的uri。默认false
+        enabled: true
+        #        指定Config Server在服务发现中的serviceId，默认是configserver
+        service-id: microservice-config-server
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka/
+  instance:
+    prefer-ip-address: true
